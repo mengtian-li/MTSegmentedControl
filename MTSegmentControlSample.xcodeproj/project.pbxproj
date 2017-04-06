@@ -13,7 +13,8 @@
 		C1BE2C261E93ABF900C3B1BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1BE2C241E93ABF900C3B1BD /* Main.storyboard */; };
 		C1BE2C281E93ABF900C3B1BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1BE2C271E93ABF900C3B1BD /* Assets.xcassets */; };
 		C1BE2C2B1E93ABF900C3B1BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1BE2C291E93ABF900C3B1BD /* LaunchScreen.storyboard */; };
-		C1BE2C351E93AC2A00C3B1BD /* MTSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C341E93AC2A00C3B1BD /* MTSegmentControl.m */; };
+		C1BE2C351E93AC2A00C3B1BD /* MTSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C341E93AC2A00C3B1BD /* MTSegmentedControl.m */; };
+		C1BE2C3C1E93C00500C3B1BD /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C3B1E93C00500C3B1BD /* UIImage+Category.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,10 @@
 		C1BE2C271E93ABF900C3B1BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1BE2C2A1E93ABF900C3B1BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1BE2C2C1E93ABF900C3B1BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1BE2C331E93AC2A00C3B1BD /* MTSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTSegmentControl.h; path = MTSegmentControl/MTSegmentControl.h; sourceTree = "<group>"; };
-		C1BE2C341E93AC2A00C3B1BD /* MTSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTSegmentControl.m; path = MTSegmentControl/MTSegmentControl.m; sourceTree = "<group>"; };
+		C1BE2C331E93AC2A00C3B1BD /* MTSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTSegmentedControl.h; path = MTSegmentControl/MTSegmentedControl.h; sourceTree = "<group>"; };
+		C1BE2C341E93AC2A00C3B1BD /* MTSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTSegmentedControl.m; path = MTSegmentControl/MTSegmentedControl.m; sourceTree = "<group>"; };
+		C1BE2C3A1E93C00500C3B1BD /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Category.h"; path = "Category/UIImage+Category.h"; sourceTree = "<group>"; };
+		C1BE2C3B1E93C00500C3B1BD /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Category.m"; path = "Category/UIImage+Category.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,7 @@
 		C1BE2C1A1E93ABF900C3B1BD /* MTSegmentControlSample */ = {
 			isa = PBXGroup;
 			children = (
+				C1BE2C391E93BFF400C3B1BD /* Category */,
 				C1BE2C321E93AC0100C3B1BD /* MTSegmentControl */,
 				C1BE2C1E1E93ABF900C3B1BD /* AppDelegate.h */,
 				C1BE2C1F1E93ABF900C3B1BD /* AppDelegate.m */,
@@ -86,10 +90,19 @@
 		C1BE2C321E93AC0100C3B1BD /* MTSegmentControl */ = {
 			isa = PBXGroup;
 			children = (
-				C1BE2C331E93AC2A00C3B1BD /* MTSegmentControl.h */,
-				C1BE2C341E93AC2A00C3B1BD /* MTSegmentControl.m */,
+				C1BE2C331E93AC2A00C3B1BD /* MTSegmentedControl.h */,
+				C1BE2C341E93AC2A00C3B1BD /* MTSegmentedControl.m */,
 			);
 			name = MTSegmentControl;
+			sourceTree = "<group>";
+		};
+		C1BE2C391E93BFF400C3B1BD /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C1BE2C3A1E93C00500C3B1BD /* UIImage+Category.h */,
+				C1BE2C3B1E93C00500C3B1BD /* UIImage+Category.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,8 +179,9 @@
 			files = (
 				C1BE2C231E93ABF900C3B1BD /* ViewController.m in Sources */,
 				C1BE2C201E93ABF900C3B1BD /* AppDelegate.m in Sources */,
-				C1BE2C351E93AC2A00C3B1BD /* MTSegmentControl.m in Sources */,
+				C1BE2C351E93AC2A00C3B1BD /* MTSegmentedControl.m in Sources */,
 				C1BE2C1D1E93ABF900C3B1BD /* main.m in Sources */,
+				C1BE2C3C1E93C00500C3B1BD /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,8 +302,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LT8WP65P6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MTSegmentControlSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.limengtian.MTSegmentControlSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -300,6 +319,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LT8WP65P6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MTSegmentControlSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.limengtian.MTSegmentControlSample;
@@ -326,6 +349,7 @@
 				C1BE2C311E93ABF900C3B1BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

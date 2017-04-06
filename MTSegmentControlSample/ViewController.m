@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MTSegmentedControl.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    MTSegmentedControl *segmentControl = [[MTSegmentedControl alloc] initWithItem:@[@"你好",@"再见哇",@"萨瓦迪卡"]];
+//    segmentControl.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    segmentControl.frame = CGRectMake(100, 100, 250, 40);
+    
+    [self.view addSubview:segmentControl];
+ 
 }
 
 

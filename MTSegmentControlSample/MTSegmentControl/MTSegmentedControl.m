@@ -28,16 +28,11 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
 @interface MTSegmentedControl ()
 
 @property (nonatomic, strong) NSMutableArray <UIButton *> * buttons;
-@property (nonatomic, strong) NSMutableArray <UIView *> *separateViews;
 @property (nonatomic, copy) NSArray <NSString *> * items;
 
 @property (nonatomic) CGFloat itemWidth;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIButton *lastButton;
-
-@property (nonatomic, copy) NSArray *itemWidthConstraints;
-@property (nonatomic, copy) NSArray *itemHeightConstraints;
-
 
 @end
 
@@ -63,9 +58,6 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
         _itemMargin = 5.0;
         
         _selectedSegmentIndex = 0;
-        _borderColor = UIColorFromRGB(0x333333);
-        _borderWidth = 2.0;
-        _borderRadius = 5.0;
         
         _selectedItemBackgroudColor = UIColorFromRGB(0x333333);
         _selectedItemTitleColor = UIColorFromRGB(0xffffff);
@@ -75,7 +67,8 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
         _unSelectedItemHighlightedBackgroundColor = UIColorFromRGB(0xf2f2f2);
         _unSelectedItemHighlightedTitleColor = UIColorFromRGB(0x303030);
   
-        [self setupButtons];
+        [self setupDefaultConfiguration];
+        [self setupSubViews];
     }
     return self;
 }
@@ -85,23 +78,17 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
     [self setupConstraints];
 }
 
-
 #pragma mark - private
 
-- (void)setupButtons {
-    [self setupSubViews];
+- (void)setupDefaultConfiguration {
+    self.borderColor = UIColorFromRGB(0x333333);
+    self.borderWidth = 2.0;
+    self.borderRadius = 5.0;
 }
 
 - (void)setupSubViews {
-    _contentView = [[UIView alloc] init];
-    _contentView.layer.borderColor = _borderColor.CGColor;
-    _contentView.layer.borderWidth = _borderWidth;
-    _contentView.layer.cornerRadius = _borderRadius;
-    _contentView.layer.masksToBounds = YES;
-    _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    _contentView.backgroundColor = _borderColor;
     
-    [self addSubview:_contentView];
+    [self addSubview:self.contentView];
     
     for (int i = 0; i < self.items.count; i++) {
         NSString *item = [self.items objectAtIndex:i];
@@ -120,17 +107,15 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
         [button addTarget:self action:@selector(touchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
         [button addTarget:self action:@selector(touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         
-        [_contentView addSubview:button];
+        [self.contentView addSubview:button];
         [self.buttons addObject:button];
     }
-    
-
 }
 
 - (void)setupConstraints {
     
     [self removeConstraints:self.constraints];
-    [_contentView removeConstraints:_contentView.constraints];
+    [self.contentView removeConstraints:self.contentView.constraints];
     
     UIButton *lastButton = nil;
     
@@ -253,7 +238,41 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
     
 }
 
-#pragma mark - Accessor 
+#pragma mark - Getter
+
+- (UIView *)contentView {
+    if (!_contentView) {
+        _contentView = [[UIView alloc] init];
+        _contentView.layer.masksToBounds = YES;
+        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _contentView;
+}
+
+#pragma mark - Setter
+
+- (void)setBorderColor:(UIColor *)borderColor {
+    if (!CGColorEqualToColor(_borderColor.CGColor, borderColor.CGColor)) {
+        _borderColor = borderColor;
+        self.contentView.layer.borderColor = _borderColor.CGColor;
+        self.contentView.backgroundColor = _borderColor;
+    }
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth {
+    if (_borderWidth != borderWidth) {
+        _borderWidth = borderWidth;
+         self.contentView.layer.borderWidth = _borderWidth;
+    }
+}
+
+- (void)setBorderRadius:(CGFloat)borderRadius {
+    if (_borderRadius != borderRadius) {
+        _borderRadius = borderRadius;
+        self.contentView.layer.cornerRadius = _borderRadius;
+    }
+}
+
 
 - (void)setSelectedSegmentIndex:(NSUInteger)selectedSegmentIndex {
     if (_selectedSegmentIndex == selectedSegmentIndex || selectedSegmentIndex >= self.items.count) {
@@ -266,5 +285,7 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
     
     _selectedSegmentIndex = selectedSegmentIndex;
 }
+
+
 
 @end

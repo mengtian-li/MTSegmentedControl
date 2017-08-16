@@ -21,7 +21,7 @@
     MTSegmentedControl *segmentControl = [[MTSegmentedControl alloc] initWithItem:@[@"你好",@"再见哇",@"萨瓦迪卡"]];
 //    segmentControl.translatesAutoresizingMaskIntoConstraints = NO;
     
-    segmentControl.frame = CGRectMake(100, 100, 250, 40);
+    segmentControl.frame = CGRectMake(0, 100, 250, 40);
     
     [self.view addSubview:segmentControl];
  

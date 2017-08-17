@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C161E1BA1F4437C900B53E22 /* MTSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C161E1B91F4437C900B53E22 /* MTSegmentedButton.m */; };
 		C1BE2C1D1E93ABF900C3B1BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C1C1E93ABF900C3B1BD /* main.m */; };
 		C1BE2C201E93ABF900C3B1BD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C1F1E93ABF900C3B1BD /* AppDelegate.m */; };
 		C1BE2C231E93ABF900C3B1BD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1BE2C221E93ABF900C3B1BD /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C161E1B81F4437C900B53E22 /* MTSegmentedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSegmentedButton.h; sourceTree = "<group>"; };
+		C161E1B91F4437C900B53E22 /* MTSegmentedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSegmentedButton.m; sourceTree = "<group>"; };
 		C1BE2C181E93ABF900C3B1BD /* MTSegmentControlSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTSegmentControlSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BE2C1C1E93ABF900C3B1BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C1BE2C1E1E93ABF900C3B1BD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 			children = (
 				C1BE2C331E93AC2A00C3B1BD /* MTSegmentedControl.h */,
 				C1BE2C341E93AC2A00C3B1BD /* MTSegmentedControl.m */,
+				C161E1B81F4437C900B53E22 /* MTSegmentedButton.h */,
+				C161E1B91F4437C900B53E22 /* MTSegmentedButton.m */,
 			);
 			name = MTSegmentControl;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				C1BE2C351E93AC2A00C3B1BD /* MTSegmentedControl.m in Sources */,
 				C1BE2C1D1E93ABF900C3B1BD /* main.m in Sources */,
 				C1BE2C3C1E93C00500C3B1BD /* UIImage+Category.m in Sources */,
+				C161E1BA1F4437C900B53E22 /* MTSegmentedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

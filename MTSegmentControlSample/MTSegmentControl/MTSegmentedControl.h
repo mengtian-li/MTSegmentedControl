@@ -15,7 +15,7 @@
 @property (nonatomic) NSUInteger selectedSegmentIndex;
 
 //margin
-@property (nonatomic) CGFloat itemMargin;
+//@property (nonatomic) CGFloat itemMargin;
 
 //border
 @property (nonatomic, strong) UIColor *borderColor;

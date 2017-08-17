@@ -10,6 +10,8 @@
 
 @implementation MTSegmentedButton
 
+#pragma mark -life cycle
+
 + (instancetype)buttonWithType:(UIButtonType)buttonType {
     MTSegmentedButton *button = [super buttonWithType:buttonType];
     
@@ -20,6 +22,8 @@
     
     return button;
 }
+
+# pragma mark - public
 
 - (void)setType:(MTSegmentControlButtonType)type {
     _type = type;
@@ -36,6 +40,10 @@
         default:
             break;
     }
+}
+
+- (void)loadResource {
+    [self setType:_type];
 }
 
 #pragma mark - Action

@@ -10,13 +10,9 @@
 
 @interface MTSegmentedControl : UIView
 
-- (instancetype)initWithItem:(NSArray <NSString *> *)items;
-
 @property (nonatomic) NSUInteger selectedSegmentIndex;
-
 //margin
 //@property (nonatomic) CGFloat itemMargin;
-
 //border
 @property (nonatomic, strong) UIColor *borderColor;
 @property (nonatomic) CGFloat borderWidth;
@@ -29,8 +25,9 @@
 @property (nonatomic, strong) UIColor *unSelectedItemTitleColor; // noarml
 @property (nonatomic, strong) UIColor *unSelectedItemHighlightedBackgroundColor; //highlighted
 @property (nonatomic, strong) UIColor *unSelectedItemHighlightedTitleColor; // highlighted
-
 //call back
 @property (nonatomic, copy) void (^segmentControlSelectedHanlder)(NSUInteger);
+
+- (instancetype)initWithItem:(NSArray <NSString *> *)items NS_DESIGNATED_INITIALIZER;
 
 @end

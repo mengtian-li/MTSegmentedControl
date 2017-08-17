@@ -43,23 +43,18 @@
     return [self initWithItem:nil];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    return [self initWithItem:nil];
+}
+
 - (instancetype)initWithItem:(NSArray<NSString *> *)items {
     self = [super initWithFrame:CGRectZero];
     if (self) {
         self.items = items;
         
         _itemWidth = 0.0;
-        
         _selectedSegmentIndex = 0;
-        
-        _selectedItemBackgroudColor = UIColorFromRGB(0x333333);
-        _selectedItemTitleColor = UIColorFromRGB(0xffffff);
-        
-        _unSelectedItemBackgroundColor = UIColorFromRGB(0xffffff);
-        _unSelectedItemTitleColor = UIColorFromRGB(0x333333);
-        _unSelectedItemHighlightedBackgroundColor = UIColorFromRGB(0xf2f2f2);
-        _unSelectedItemHighlightedTitleColor = UIColorFromRGB(0x303030);
-  
+    
         [self setupDefaultConfiguration];
         [self setupSubViews];
     }
@@ -76,6 +71,14 @@
     self.borderColor = UIColorFromRGB(0x333333);
     self.borderWidth = 2.0;
     self.borderRadius = 5.0;
+    
+    _selectedItemBackgroudColor = UIColorFromRGB(0x333333);
+    _selectedItemTitleColor = UIColorFromRGB(0xffffff);
+    
+    _unSelectedItemBackgroundColor = UIColorFromRGB(0xffffff);
+    _unSelectedItemTitleColor = UIColorFromRGB(0x333333);
+    _unSelectedItemHighlightedBackgroundColor = UIColorFromRGB(0xf2f2f2);
+    _unSelectedItemHighlightedTitleColor = UIColorFromRGB(0x303030);
 }
 
 - (void)setupSubViews {
@@ -149,24 +152,14 @@
     }
 }
 
-- (void)button: (MTSegmentedButton *)button setBackgroundColor: (UIColor *)color {
-    if ([color isKindOfClass:[UIColor class]]) {
-        UIImage *colorImage = [UIImage imageWithColor:color];
-        [button setBackgroundImage:colorImage forState:UIControlStateNormal];
-        [button setBackgroundImage:colorImage forState:UIControlStateSelected];
-        [button setBackgroundImage:colorImage forState:UIControlStateHighlighted];
+- (void)loadButtonResourceWithType:(MTSegmentControlButtonType)type {
+    for (MTSegmentedButton *button in self.buttons) {
+        if (type == button.type) {
+            [button loadResource];
+        }
     }
 }
-
-- (void)button: (MTSegmentedButton *)button setTitleColor: (UIColor *)color {
-    if ([color isKindOfClass:[UIColor class]]) {
-        [button setTitleColor:color forState:UIControlStateNormal];
-        [button setTitleColor:color forState:UIControlStateSelected];
-        [button setTitleColor:color forState:UIControlStateHighlighted];
-        button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    }
-}
-
+ 
 #pragma mark - Getter
 
 - (UIView *)contentView {
@@ -205,7 +198,42 @@
 - (void)setSelectedItemBackgroudColor:(UIColor *)selectedItemBackgroudColor {
     if (!CGColorEqualToColor(_selectedItemBackgroudColor.CGColor, selectedItemBackgroudColor.CGColor)) {
         _selectedItemBackgroudColor = selectedItemBackgroudColor;
-        
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeSelected];
+    }
+}
+
+- (void)setSelectedItemTitleColor:(UIColor *)selectedItemTitleColor {
+    if (!CGColorEqualToColor(_selectedItemTitleColor.CGColor, selectedItemTitleColor.CGColor)) {
+        _selectedItemTitleColor = selectedItemTitleColor;
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeSelected];
+    }
+}
+
+- (void)setUnSelectedItemBackgroundColor:(UIColor *)unSelectedItemBackgroundColor {
+    if (!CGColorEqualToColor(_unSelectedItemBackgroundColor.CGColor, unSelectedItemBackgroundColor.CGColor)) {
+        _unSelectedItemBackgroundColor = unSelectedItemBackgroundColor;
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelected];
+    }
+}
+
+- (void)setUnSelectedItemTitleColor:(UIColor *)unSelectedItemTitleColor {
+    if (!CGColorEqualToColor(_unSelectedItemTitleColor.CGColor, unSelectedItemTitleColor.CGColor)) {
+        _unSelectedItemTitleColor = unSelectedItemTitleColor;
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelected];
+    }
+}
+
+- (void)setUnSelectedItemHighlightedBackgroundColor:(UIColor *)unSelectedItemHighlightedBackgroundColor {
+    if (!CGColorEqualToColor(_unSelectedItemHighlightedBackgroundColor.CGColor, unSelectedItemHighlightedBackgroundColor.CGColor)) {
+        _unSelectedItemHighlightedBackgroundColor = unSelectedItemHighlightedBackgroundColor;
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeHighlighted];
+    }
+}
+
+- (void)setUnSelectedItemHighlightedTitleColor:(UIColor *)unSelectedItemHighlightedTitleColor {
+    if (!CGColorEqualToColor(_unSelectedItemHighlightedTitleColor.CGColor, unSelectedItemHighlightedTitleColor.CGColor)) {
+        _unSelectedItemHighlightedTitleColor = unSelectedItemHighlightedTitleColor;
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeHighlighted];
     }
 }
 
@@ -224,15 +252,15 @@
 #pragma mark - MTSegmentedButtonDelegate 
 
 - (UIImage *)selectedImage {
-    return [UIImage imageWithColor:self.selectedItemBackgroudColor];
+    return [UIImage imageWithColor:_selectedItemBackgroudColor];
 }
 
 - (UIColor *)selectedTitleColor {
-    return self.selectedItemTitleColor;
+    return _selectedItemTitleColor;
 }
 
 - (UIImage *)unSelectedNormalImage {
-    return [UIImage imageWithColor:self.unSelectedItemBackgroundColor];
+    return [UIImage imageWithColor:_unSelectedItemBackgroundColor];
 }
 
 - (UIColor *)unSelectedNormalTitleColor {
@@ -240,11 +268,11 @@
 }
 
 - (UIImage *)unSelectedHighlightedImage {
-    return [UIImage imageWithColor:self.unSelectedItemHighlightedBackgroundColor];
+    return [UIImage imageWithColor:_unSelectedItemHighlightedBackgroundColor];
 }
 
 - (UIColor *)unSelectedHighlightedTitleColor {
-    return self.unSelectedItemHighlightedTitleColor;
+    return _unSelectedItemHighlightedTitleColor;
 }
 
 - (void)itemSelected:(MTSegmentedButton *)button {

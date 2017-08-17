@@ -34,4 +34,6 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
 @property (nonatomic) MTSegmentControlButtonType type;
 @property (nonatomic, weak) id<MTSegmentedButtonDelegate> delegate;
 
+- (void)loadResource;
+
 @end

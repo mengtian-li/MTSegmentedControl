@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
 - (UIImage *)unSelectedHighlightedImage;
 - (UIColor *)unSelectedHighlightedTitleColor;
 
+- (void)itemSelected:(MTSegmentedButton *)button;
+
 @end
 
 @interface MTSegmentedButton : UIButton

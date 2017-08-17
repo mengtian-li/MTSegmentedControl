@@ -10,6 +10,17 @@
 
 @implementation MTSegmentedButton
 
++ (instancetype)buttonWithType:(UIButtonType)buttonType {
+    MTSegmentedButton *button = [super buttonWithType:buttonType];
+    
+    [button addTarget:button action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
+    [button addTarget:button action:@selector(touDragExit:) forControlEvents:UIControlEventTouchDragExit];
+    [button addTarget:button action:@selector(touchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
+    [button addTarget:button action:@selector(touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
 - (void)setType:(MTSegmentControlButtonType)type {
     _type = type;
     switch (type) {
@@ -26,6 +37,39 @@
             break;
     }
 }
+
+#pragma mark - Action
+
+- (void)touchDown:(MTSegmentedButton *)button {
+    if (MTSegmentControlButtonTypeSelected == _type) {
+        return;
+    }
+    button.type = MTSegmentControlButtonTypeHighlighted;
+}
+
+- (void)touDragExit:(MTSegmentedButton *)button {
+    if (MTSegmentControlButtonTypeSelected == _type) {
+        return;
+    }
+    button.type = MTSegmentControlButtonTypeUnSelected;
+}
+
+- (void)touchDragEnter:(MTSegmentedButton *)button {
+    if (MTSegmentControlButtonTypeSelected == _type) {
+        return;
+    }
+    button.type = MTSegmentControlButtonTypeHighlighted;
+}
+
+- (void)touchUpInside:(MTSegmentedButton *)button {
+    if (MTSegmentControlButtonTypeSelected == _type) {
+        return;
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(itemSelected:)]) {
+        [self.delegate itemSelected:button];
+    }
+}
+
 
 #pragma mark - UIHelper
 

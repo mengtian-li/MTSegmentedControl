@@ -97,11 +97,6 @@
             button.type = MTSegmentControlButtonTypeUnSelected;
         }
         
-        [button addTarget:self action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
-        [button addTarget:self action:@selector(touDragExit:) forControlEvents:UIControlEventTouchDragExit];
-        [button addTarget:self action:@selector(touchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
-        [button addTarget:self action:@selector(touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        
         [self.contentView addSubview:button];
         [self.buttons addObject:button];
     }
@@ -170,47 +165,6 @@
         [button setTitleColor:color forState:UIControlStateHighlighted];
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
-}
-
-
-#pragma mark - Action
-
-- (void)touchDown: (MTSegmentedButton *)button {
-    DLog(@"%@",button);
-    if (button == [self.buttons objectAtIndex:_selectedSegmentIndex]) {
-        return;
-    }
-    button.type = MTSegmentControlButtonTypeHighlighted;
-}
-
-- (void)touDragExit: (MTSegmentedButton *)button {
-    DLog(@"%@",button);
-    if (button == [self.buttons objectAtIndex:_selectedSegmentIndex]) {
-        return;
-    }
-    button.type = MTSegmentControlButtonTypeUnSelected;
-}
-
-- (void)touchDragEnter: (MTSegmentedButton *)button {
-    DLog(@"%@",button);
-    if (button == [self.buttons objectAtIndex:_selectedSegmentIndex]) {
-        return;
-    }
-    button.type = MTSegmentControlButtonTypeHighlighted;
-}
-
-- (void)touchUpInside: (MTSegmentedButton *)button {
-    DLog(@"%@",button);
-    if (button == [self.buttons objectAtIndex:_selectedSegmentIndex]) {
-        return;
-    }
-    NSInteger index = [self.buttons indexOfObject:button];
-    self.selectedSegmentIndex = index;
-    
-    if (self.segmentControlSelectedHanlder) {
-        self.segmentControlSelectedHanlder(index);
-    }
-    
 }
 
 #pragma mark - Getter
@@ -291,6 +245,15 @@
 
 - (UIColor *)unSelectedHighlightedTitleColor {
     return self.unSelectedItemHighlightedTitleColor;
+}
+
+- (void)itemSelected:(MTSegmentedButton *)button {
+    NSInteger index = [self.buttons indexOfObject:button];
+    self.selectedSegmentIndex = index;
+    
+    if (self.segmentControlSelectedHanlder) {
+        self.segmentControlSelectedHanlder(index);
+    }
 }
 
 @end

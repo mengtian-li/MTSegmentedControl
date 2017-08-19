@@ -27,7 +27,6 @@
 
 @property (nonatomic) CGFloat itemWidth;
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) MTSegmentedButton *lastButton;
 
 @end
 
@@ -135,7 +134,6 @@
             [_contentView addConstraint:[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:lastButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:_borderWidth]];
         }
         lastButton = button;
-        _lastButton = lastButton;
     }
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];

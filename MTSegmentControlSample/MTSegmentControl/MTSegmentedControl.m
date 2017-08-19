@@ -25,7 +25,6 @@
 @property (nonatomic, strong) NSMutableArray <MTSegmentedButton *> * buttons;
 @property (nonatomic, copy) NSArray <NSString *> * items;
 
-@property (nonatomic) CGFloat itemWidth;
 @property (nonatomic, strong) UIView *contentView;
 
 @end
@@ -51,7 +50,6 @@
     if (self) {
         self.items = items;
         
-        _itemWidth = 0.0;
         _selectedSegmentIndex = 0;
     
         [self setupDefaultConfiguration];
@@ -92,7 +90,6 @@
         button.delegate = self;
         [self button:button setTitle:item];
         [button sizeToFit];
-        _itemWidth = button.frame.size.width > _itemWidth ?  button.frame.size.width : _itemWidth;
         if (_selectedSegmentIndex == i) {
             button.type = MTSegmentControlButtonTypeSelected;
         } else {

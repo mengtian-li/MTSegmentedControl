@@ -14,7 +14,9 @@
 
 + (instancetype)buttonWithType:(UIButtonType)buttonType {
     MTSegmentedButton *button = [super buttonWithType:buttonType];
+    button.type = MTSegmentControlButtonTypeDefault;
     
+    //don‘t addTarget to `self`,cause `self` now is the class
     [button addTarget:button action:@selector(touchDown:) forControlEvents:UIControlEventTouchDown];
     [button addTarget:button action:@selector(touDragExit:) forControlEvents:UIControlEventTouchDragExit];
     [button addTarget:button action:@selector(touchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
@@ -37,6 +39,8 @@
             break;
         case MTSegmentControlButtonTypeUnSelectedHighlighted:
             [self loadResourceForUnSelectedHighlightedState];
+            break;
+        case MTSegmentControlButtonTypeDefault:
             break;
         default:
             break;

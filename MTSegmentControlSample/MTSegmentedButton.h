@@ -10,8 +10,8 @@
 
 typedef NS_ENUM(NSInteger, MTSegmentControlButtonType) {
     MTSegmentControlButtonTypeSelected = 0, // selected
-    MTSegmentControlButtonTypeUnSelected, // unselected normal
-    MTSegmentControlButtonTypeHighlighted, // unselected highlighted
+    MTSegmentControlButtonTypeUnSelectedNormal, // unselected normal
+    MTSegmentControlButtonTypeUnSelectedHighlighted, // unselected highlighted
 };
 
 @class MTSegmentedButton;

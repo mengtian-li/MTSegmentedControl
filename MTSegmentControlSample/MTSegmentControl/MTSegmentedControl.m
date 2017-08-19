@@ -97,7 +97,7 @@
         if (_selectedSegmentIndex == i) {
             button.type = MTSegmentControlButtonTypeSelected;
         } else {
-            button.type = MTSegmentControlButtonTypeUnSelected;
+            button.type = MTSegmentControlButtonTypeUnSelectedNormal;
         }
         
         [self.contentView addSubview:button];
@@ -212,28 +212,28 @@
 - (void)setUnSelectedItemBackgroundColor:(UIColor *)unSelectedItemBackgroundColor {
     if (!CGColorEqualToColor(_unSelectedItemBackgroundColor.CGColor, unSelectedItemBackgroundColor.CGColor)) {
         _unSelectedItemBackgroundColor = unSelectedItemBackgroundColor;
-        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelected];
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelectedNormal];
     }
 }
 
 - (void)setUnSelectedItemTitleColor:(UIColor *)unSelectedItemTitleColor {
     if (!CGColorEqualToColor(_unSelectedItemTitleColor.CGColor, unSelectedItemTitleColor.CGColor)) {
         _unSelectedItemTitleColor = unSelectedItemTitleColor;
-        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelected];
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelectedNormal];
     }
 }
 
 - (void)setUnSelectedItemHighlightedBackgroundColor:(UIColor *)unSelectedItemHighlightedBackgroundColor {
     if (!CGColorEqualToColor(_unSelectedItemHighlightedBackgroundColor.CGColor, unSelectedItemHighlightedBackgroundColor.CGColor)) {
         _unSelectedItemHighlightedBackgroundColor = unSelectedItemHighlightedBackgroundColor;
-        [self loadButtonResourceWithType:MTSegmentControlButtonTypeHighlighted];
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelectedHighlighted];
     }
 }
 
 - (void)setUnSelectedItemHighlightedTitleColor:(UIColor *)unSelectedItemHighlightedTitleColor {
     if (!CGColorEqualToColor(_unSelectedItemHighlightedTitleColor.CGColor, unSelectedItemHighlightedTitleColor.CGColor)) {
         _unSelectedItemHighlightedTitleColor = unSelectedItemHighlightedTitleColor;
-        [self loadButtonResourceWithType:MTSegmentControlButtonTypeHighlighted];
+        [self loadButtonResourceWithType:MTSegmentControlButtonTypeUnSelectedHighlighted];
     }
 }
 
@@ -243,7 +243,7 @@
     }
     MTSegmentedButton *prevButton = [self.buttons objectAtIndex:_selectedSegmentIndex];
     MTSegmentedButton *currentButton = [self.buttons objectAtIndex:selectedSegmentIndex];
-    prevButton.type = MTSegmentControlButtonTypeUnSelected;
+    prevButton.type = MTSegmentControlButtonTypeUnSelectedNormal;
     currentButton.type = MTSegmentControlButtonTypeSelected;
     
     _selectedSegmentIndex = selectedSegmentIndex;

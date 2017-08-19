@@ -19,6 +19,7 @@
     [button addTarget:button action:@selector(touDragExit:) forControlEvents:UIControlEventTouchDragExit];
     [button addTarget:button action:@selector(touchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
     [button addTarget:button action:@selector(touchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:button action:@selector(touchCancel:) forControlEvents:UIControlEventTouchCancel];
     
     return button;
 }
@@ -31,10 +32,10 @@
         case MTSegmentControlButtonTypeSelected:
             [self loadResourceForSelectedState];
             break;
-        case MTSegmentControlButtonTypeUnSelected:
+        case MTSegmentControlButtonTypeUnSelectedNormal:
             [self loadResourceForUnselectedNormalState];
             break;
-        case MTSegmentControlButtonTypeHighlighted:
+        case MTSegmentControlButtonTypeUnSelectedHighlighted:
             [self loadResourceForUnSelectedHighlightedState];
             break;
         default:
@@ -52,21 +53,21 @@
     if (MTSegmentControlButtonTypeSelected == _type) {
         return;
     }
-    button.type = MTSegmentControlButtonTypeHighlighted;
+    button.type = MTSegmentControlButtonTypeUnSelectedHighlighted;
 }
 
 - (void)touDragExit:(MTSegmentedButton *)button {
     if (MTSegmentControlButtonTypeSelected == _type) {
         return;
     }
-    button.type = MTSegmentControlButtonTypeUnSelected;
+    button.type = MTSegmentControlButtonTypeUnSelectedNormal;
 }
 
 - (void)touchDragEnter:(MTSegmentedButton *)button {
     if (MTSegmentControlButtonTypeSelected == _type) {
         return;
     }
-    button.type = MTSegmentControlButtonTypeHighlighted;
+    button.type = MTSegmentControlButtonTypeUnSelectedHighlighted;
 }
 
 - (void)touchUpInside:(MTSegmentedButton *)button {
@@ -78,6 +79,11 @@
     }
 }
 
+- (void)touchCancel:(MTSegmentedButton *)button {
+    if (MTSegmentControlButtonTypeUnSelectedHighlighted == button.type) {
+        button.type = MTSegmentControlButtonTypeUnSelectedNormal;
+    }
+}
 
 #pragma mark - UIHelper
 
